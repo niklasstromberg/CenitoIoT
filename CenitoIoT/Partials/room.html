@@ -1,0 +1,266 @@
+<div class="modal-header">
+    <h3>
+        <span ng-if=" view == 0 || view == 1 || view == 2">{{book.Title}} </span>
+        <span ng-if=" view == 4"><strong>Skapa en ny Bok</strong></span>
+        <span ng-if=" view == 3">Vill du radera <strong>{{book.Title}}</strong>?</span>
+
+        <button class="btn btn-default pull-right" ng-if="loggedin == 1 && view == 0" ng-click="editView(1)">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </button>
+        <button class="btn btn-default pull-right" ng-if="loggedin == 1 && view == 1" ng-click="editView(0)">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </button>
+    </h3>
+</div>
+
+<!-- redigeringsläge -->
+<form name="editForm" novalidate>
+    <div ng-if="view == 1 || view == 4">
+        <div class="modal-body">
+            <div class="form-group">
+                <label ng-if="loggedin == 1" for="bookTitle">
+                    Titel:
+                    <span class="text-danger" ng-show="editForm.titleField.$error.maxlength || editForm.titleField.$error.minlength || editForm.titleField.$error.required"><span ng-show="editForm.titleField.$dirty || editForm.titleField.$error.invalid">Titeln måste vara mellan 4 och 75 tecken</span></span>
+                </label>
+                <input ng-if="loggedin == 1" name="titleField" ng-maxlength="75" type="text" ng-minlength="4" class="form-control" ng-model="book.Title" placeholder="Namn..." id="bookTitle" ng-required="true" />
+            </div>
+            <div class="form-group">
+                <label for="bookSummary">
+                    Sammanfattning:
+                    <span class="text-danger" ng-show="editForm.summaryField.$error.maxlength">Max 5000 tecken</span>
+                </label>
+                <textarea ng-if="loggedin == 1" name="summaryField" ng-maxlength="5000" type="text" class="form-control" ng-model="book.Summary" rows="4"  style="resize:none;" id="bookSummary"></textarea>
+                <div ng-if="loggedin == 2" class="well well-lg">{{book.Summary}}</div>
+            </div>
+
+            <!--Här läggs till ny vald author varje gång du trycker på plus(glyphicon)-->
+            <div ng-if="loggedin == 1" class="form-group dropdown" dropdown is-open="status3.isopen">
+                <label for="bookAuthor">Författare:</label>
+                <span class="dropdown-toggle glyphicon glyphicon-plus listFocus" dropdown-toggle ng-disabled="disabled"></span>
+                <span class="text-danger" ng-if="authors.length == 0 || newAuthors.length == 0">Ange minst en författare</span>
+                <ul id="addAuthorId">
+                    <li ng-repeat="author in newAuthors">{{author.Name}}&nbsp;<span class="glyphicon glyphicon-minus listFocus" ng-click="removeSelectAuthor(author)"></span></li>
+                </ul>
+                <ul class="dropdown-menu cursor" role="menu">
+                    <li ng-repeat="author in authors" ng-click="addAuthor(author)">{{author.Name}}&nbsp;</li>
+                </ul>
+            </div>
+            <div class="form-group" ng-if="loggedin == 2">
+                <label for="bookGenre">Författare:</label>
+                <span ng-repeat="author in book.Authors">{{author.Name}}&nbsp;</span>
+            </div>
+
+            <!--Här läggs till ny vald genre varje gång du trycker på plus(glyphicon)-->
+            <div ng-if="loggedin == 1" class="form-group dropdown" dropdown is-open="status4.isopen">
+                <label for="bookGenre">Genre:</label>
+                <span class="dropdown-toggle glyphicon glyphicon-plus listFocus" dropdown-toggle ng-disabled="disabled"></span>
+                <span class="text-danger" ng-if="genres.length == 0 || newGenres.length == 0">Ange minst en genre</span>
+                <ul id="addGenreId">
+                    <li ng-repeat="genre in newGenres">{{genre.Name}}&nbsp;<span class="glyphicon glyphicon-minus listFocus" ng-click="removeSelectGenre(genre)"></span></li>
+                </ul>
+                <ul class="dropdown-menu cursor" role="menu">
+                    <li ng-repeat="genre in genres" ng-click="addGenre(genre)">{{genre.Name}}&nbsp;</li>
+                </ul>
+            </div>
+            <div class="form-group" ng-if="loggedin == 2">
+                <label for="bookGenre">Genre:</label>
+                <span ng-repeat="genre in book.Genres">{{genre.Name}}&nbsp;</span>
+            </div>
+
+            <div class="form-group">
+                <label for="bookYear">
+                    Utgivningsår:
+                    <span class="text-danger" ng-show="editForm.yearField.$error.maxlength || editForm.yearField.$invalid">Ange ett år mellan 1000-{{currDate}}</span>
+                </label>
+                <input ng-if="loggedin == 1" name="yearField" type="number" ng-minlength="1" ng-maxlength="4" max="{{currDate}}" placeholder="ÅÅÅÅ" class="form-control" min="1000" ng-model="book.Year"  width:200px;" id="bookYear" />
+                <p ng-if="loggedin == 2">{{book.Year}}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="bookISBN">
+                    ISBN:
+                    <span class="text-danger" ng-show="editForm.isbnField.$error.maxlength || editForm.isbnField.$invalid">Ange ett ISBN på 13 siffror</span>
+                </label>
+                <input ng-if="loggedin == 1" name="isbnField" type="text" ng-maxlength="13" ng-minlength="13" min="0" placeholder="13 siffror..." class="form-control" ng-model="book.ISBN"  id="bookISBN" />
+                <p ng-if="loggedin == 2">{{book.ISBN}}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="bookPrice">
+                    Pris:
+                    <span class="text-danger" ng-show="editForm.priceField.$error.maxlength || editForm.priceField.$invalid">Ange ett pris från 0 - 9999</span>
+                </label>
+                <input ng-if="loggedin == 1" type="number" name="priceField" placeholder="SEK..." class="form-control" ng-minlength="1" ng-maxlength="4" min="0" ng-model="book.Price"  id="bookPrice" />
+                <p ng-if="loggedin == 2">{{book.Price}}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="bookInStock">
+                    I lager:
+                    <span class="text-danger" ng-show="editForm.stockField.$error.maxlength || editForm.stockField.$invalid">Ange en lagerstatus mellan 0 - 99 999</span>
+                </label>
+                <input type="number" name="stockField" ng-minlength="1" ng-maxlength="5" min="0" placeholder="Antal..." class="form-control" ng-model="book.InStock"  id="bookInStock" />
+            </div>
+
+            <div class="form-group">
+                <label>
+                    Image path:
+                </label>
+                <input ng-if="loggedin == 1" type="text" placeholder="sökväg..." class="form-control" ng-model="book.ImagePath" id="bookImagePath" />
+                <p ng-if="loggedin == 2">{{book.ImagePath}}</p>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button ng-disabled="authors.length == 0 || newAuthors.length == 0 || newGenres.length == 0 || genres.length == 0 || !book.ISBN || !book.Price || !book.Year || !book.InStock || !book.Summary || !book.Title" class="btn btn-primary" ng-click="editView(2); editText()">Spara</button>
+            <button class="btn btn-warning" ng-click="cancel()">Avbryt</button>
+        </div>
+    </div>
+</form>
+<!-- ------------------->
+<!-- standardläge -->
+<div ng-if="view == 0">
+    <div class="modal-body">
+        <p>
+            <label>Författare:&nbsp;</label><span ng-repeat="author in book.Authors">{{author.Name}}&nbsp;</span>
+        </p>
+
+
+        <!--RATING . ng-model är "average värder" och max är max helt enkelt. -->
+
+        <p>
+            <label>Betyg:</label>
+            <rating ng-click="setRating()" ng-model="rating.AverageRating" max="maxRating" readonly="false"></rating><label ng-model="rating.AverageRating">{{rating.AverageRating.toFixed(2)}}/10</label> <span class="text-muted">Röster: {{rating.Votes}}</span>
+        </p>
+
+        <!-- ------------------->
+
+
+        <div>
+            <img ng-src="{{book.ImagePath}}" width="150" />
+
+        </div>
+        <div>
+            <label>Sammanfattning:</label>
+            <div class="well well-lg">{{book.Summary}}</div>
+        </div>
+        <div>
+            <label ng-if="book.Genres.length == 1">Genre:&nbsp;</label>
+            <label ng-if="book.Genres.length > 1">Genrer: </label>
+            <span ng-repeat="genre in book.Genres">{{genre.Name}}&nbsp;</span>
+        </div>
+        <p>
+            <label>Utgivningsår:&nbsp;</label>{{book.Year}}
+        </p>
+        <p>
+            <label>ISBN:&nbsp;</label>{{book.ISBN}}
+        </p>
+        <p>
+            <label>Pris:&nbsp;</label>{{book.Price}} SEK
+        </p>
+        <p>
+            <label>I lager:&nbsp;</label>{{book.InStock}} exemplar
+        </p>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Stäng</button>
+    </div>
+</div>
+<!-- ------------------->
+<!-- ----- Delete ------->
+
+<div ng-if="view == 3">
+    <div class="modal-body">
+        <p>
+            <label>Författare:&nbsp;</label><span ng-repeat="author in book.Authors">{{author.Name}}&nbsp;</span>
+        </p>
+        <div>
+            <label>Sammanfattning:</label>
+            <div class="well well-lg">{{book.Summary}}</div>
+        </div>
+        <div>
+            <label ng-if="book.Genres.length == 1">Genre:&nbsp;</label>
+            <label ng-if="book.Genres.length > 1">Genrer: </label>
+            <span ng-repeat="genre in book.Genres">{{genre.Name}}&nbsp;</span>
+        </div>
+        <p>
+            <label>Utgivningsår:&nbsp;</label>{{book.Year}}
+        </p>
+        <p>
+            <label>ISBN:&nbsp;</label>{{book.ISBN}}
+        </p>
+        <p>
+            <label>Pris:&nbsp;</label>{{book.Price}} SEK
+        </p>
+        <p>
+            <label>I lager:&nbsp;</label>{{book.InStock}} exemplar
+        </p>
+        <div>
+            <img ng-src="{{book.ImagePath}}" width=150 />
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="editView(2); editText() ">Ja</button>
+        <button class="btn btn-warning" ng-click="cancel()">Nej</button>
+    </div>
+</div>
+
+<!------------Slut delete --------->
+<!----- bekräftelseläge------------>
+<div ng-if="view == 2">
+    <div class="modal-body">
+        {{text}}
+        <strong>{{book.Title}}</strong>
+        <span> {{text2}}</span>
+        <div class="well">
+            <div class="form-group">
+                <label>Namn:</label>
+                <pre>{{book.Title}}</pre>
+            </div>
+            <div class="form-group">
+                <label>Författare:</label>
+                <pre ng-repeat="author in newAuthors">{{author.Name}}</pre>
+            </div>
+            <div class="form-group">
+                <label>Sammanfattning:</label>
+                <pre>{{book.Summary}}</pre>
+            </div>
+            <div class="form-group">
+                <label>Genre:</label>
+                <pre ng-repeat="genre in newGenres">{{genre.Name}}</pre>
+            </div>
+            <div class="form-group">
+                <label>Utgivninsår:</label>
+                <pre>{{book.Year}}</pre>
+            </div>
+            <div class="form-group">
+                <label>ISBN:</label>
+                <pre>{{book.ISBN}}</pre>
+            </div>
+            <div class="form-group">
+                <label>Pris:</label>
+                <pre>{{book.Price}}</pre>
+            </div>
+            <div class="form-group">
+                <label>I lager:</label>
+                <pre>{{book.InStock}}</pre>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="msg">
+            <alert ng-show="msg" type="danger" close="msg = ''">Någonting gick fel. Errorcode {{thrownError}}: {{msg}}</alert>
+            <button class="btn btn-warning" ng-click="editView(action)">Tillbaka</button>
+        </div>
+        <div ng-show="!msg">
+            <button ng-if="action == 1" class="btn btn-primary" ng-click="save()">Ja</button>
+            <button ng-if="action == 3" class="btn btn-primary" ng-click="delete()">Ja</button>
+            <button ng-if="action == 4" class="btn btn-primary" ng-click="create()">Ja</button>
+            <button class="btn btn-warning" ng-click="editView(action)">Nej</button>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------->

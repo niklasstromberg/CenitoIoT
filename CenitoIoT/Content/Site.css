@@ -1,17 +1,167 @@
-﻿body {
+﻿/*HTML*/
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/*------------*/
+
+/*Body*/
+body {
+    min-height: 100%;
+
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+body > .container{
     padding-top: 50px;
-    padding-bottom: 20px;
+}
+main{
+    padding-bottom: 50px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.navbar-default {
+    background-color: #fdfdfd;
+    border-color: #b0b0b0;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
+.navbar-default .navbar-nav > li > a {
+    color: #000000;
+    font-weight: 500;
+}
+.navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+    background-color:#428bca;
+}
+    .navbar-default .navbar-nav > .open > li,
+    .navbar-default .navbar-nav > .open > li:hover,
+    .navbar-default .navbar-nav > .open > li:focus {
+        background-color: #428bca;
+    }
+/* ändra färg på pilen i dropdownknapparna*/
+header .nav .caret{
+    border-top: 4px solid #000000;
+}
+/* centrerar menyn på stor skärm */
+@media (min-width: 768px) {
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+    .navbar{ 
+    text-align: center;
+}
+    .navbar li {
+        text-align: left;
+    }
+}
+
+
+/* anpassat utseende vid liten skärm*/
+@media (max-width: 767px) {
+    /* Dropdown text */
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #000000;
+    }
+        /* Dropdown bakgrundsfärg vid hover */
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+            background-color: #428bca;
+        }
+    /*flyttar hamburgaren till vänster sida*/
+    .navbar-toggle {
+        float: left;
+        margin-left: 20px;
+    }
+}
+@media  (max-width:480px) {
+    .hideWhenXs {
+        display: none;
+    }
+}
+/*-----Header slut    -------*/
+
+/*Main*/
+@media (min-width:1000px) {
+    body {
+        background-image: url("/Content/Image/bakgrund.jpeg");
+        background-size: 400px;
+    }
+}
+/*------------*/
+
+/*Footer*/
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: black;
+    display: block;
+}
+
+#footerText {
+    color: white;
+}
+
+/*------------*/
+
+/*Övrigt*/
+.listFocus:hover {
+    background-color: ButtonFace;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
 input,
-select,
-textarea {
-    max-width: 280px;
+textarea{
+    font-style:italic;
+}
+
+/* Thumbnails (används bara på home.html */
+.topp3{
+    width:200px;
+    height:350px;
+    
+    
+}
+.thumbnail {
+    border-color: black;
+    background-color: #abd3f6;
+    max-height: 350px;
+    min-height: 350px;
+    margin: 0 2px 0 2px;
+}
+/* endast en bild */
+.oneThumbnail {
+    width: 90%;
+    min-width: 150px;
+    margin: 0 auto;
+    border-color: black;
+    
+    text-align: center;
+}
+
+.caption {
+    text-wrap: normal;
+}
+
+.thumbnailImg {
+    width: 140px;
+    border-radius: 5px;
+    height: 220px;
+}
+/* sätter storlek på + i listorna */
+.glyphicon-plus {
+    font-size: 15px;
 }

@@ -1,0 +1,44 @@
+﻿<!-- Shows user the top 3 hightest rated books in the database -->
+<div class="container-fluid">
+    <div class="row">
+        <h2 style="text-align: center">Anslutna hus</h2>
+
+		<div ng-repeat="house in houses">
+			<button class="btn-primary" ng-click="GoTo('House.html')"> {{house.HouseName}} </button>
+		</div>
+
+		<!--<button ng-repeat="house in houses"></button>
+        <div class="col-xs-offset-0 col-sm-offset-1 col-md-offset-3">
+            <div class="topp3 cursor col-xs-12 col-sm-3 col-md-2" ng-click="open(0, house, 0)">
+                <div class="oneThumbnail col-xs-offset-4">
+                    <img class="thumbnailImg" src="{{topThreeBooks[0].ImagePath}}">
+                    <div class="caption">
+                        <h5><strong>{{house.Name}}</strong></h5>
+                        <p ng-repeat="author in topThreeBooks[0].Authors">{{author.Name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="topp3 cursor col-xs-12 col-sm-3 col-md-2" ng-click="open(0, topThreeBooks[1], 0)">
+                <div class="oneThumbnail">
+                    <img class="thumbnailImg" src="{{topThreeBooks[1].ImagePath}}">
+                    <div class="caption">
+                        <h5><strong>{{topThreeBooks[1].Title}}</strong></h5>
+                        <p ng-repeat="author in topThreeBooks[1].Authors">{{author.Name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="topp3 cursor col-xs-12 col-sm-3 col-md-2" ng-click="open(0, topThreeBooks[2], 0)">
+                <div class="oneThumbnail">
+                    <img class="thumbnailImg" src="{{topThreeBooks[2].ImagePath}}">
+                    <div class="caption">
+                        <h5><strong>{{topThreeBooks[2].Title}}</strong></h5>
+                        <p ng-repeat="author in topThreeBooks[2].Authors">{{author.Name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <h4 style="text-align: center">CenitoIoT</h4>
+    <p style="text-align: center; color: GrayText">Niklas Strömberg.</p>
+</div>
+
