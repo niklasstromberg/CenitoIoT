@@ -21,6 +21,13 @@ namespace CenitoIoT.Models
             return db.Houses;
         }
 
+        // returns the number of rooms in a house
+        public int GetRoomsPerHouse(House h)
+        {
+            return h.Rooms.Count();
+        }
+
+
         // GET: api/Houses/5
         [ResponseType(typeof(House))]
         public IHttpActionResult GetHouse(int id)

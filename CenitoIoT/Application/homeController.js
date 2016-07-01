@@ -8,13 +8,8 @@
     });
     Houses.Get();
 
-    $scope.ShowHouse = function (house, action, size) {
-        if (house) {
-            $scope.
-        }
-    }
-
-
+    $scope.sortByHouseName = function () { };
+    $scope.sortByRooms = function () { };
 
     // här ska in en redirect istället -> house.html
     $scope.open = function(view, house, action, size) {
@@ -22,17 +17,17 @@
             var modalInstance = $modal.open({
                 templateUrl: 'partials/house.html',
                 controller: 'houseController',
-                size: size,
-                resolve: {
-                    param: function () {
-                        params = {
-                            id: house.HouseId,
-                            view: view,
-                            action: action
-                        }
-                        return params;
-                    }
-                }
+                size: size
+                //resolve: {
+                //    param: function () {
+                //        params = {
+                //            id: house.HouseId,
+                //            view: view,
+                //            action: action
+                //        }
+                //        return params;
+                //    }
+                //}
             });
             modalInstance.result.then(function (selectedItem) {
                 $route.reload();

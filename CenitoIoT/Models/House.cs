@@ -13,6 +13,6 @@ namespace CenitoIoT.Models
         public int HouseId { get; set; }
         public string HouseName { get; set; }
 
-        private List<Room> Rooms { get; set; }
+        public virtual List<Room> Rooms { get; set; }
     }
 }
