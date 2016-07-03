@@ -1,4 +1,4 @@
-﻿app.service("restService", ["$http", "$rootScope", "$location", function ($http, $rootScope, $location) {
+﻿app.service("rest", ["$http", "$rootScope", "$location", function ($http, $rootScope, $location) {
 
     var rest = {
         Call: function (url, method, data, broadcastName) {
