@@ -21,13 +21,6 @@ namespace CenitoIoT.Models
             return db.Houses;
         }
 
-        // returns the number of rooms in a house
-        public int GetRoomsPerHouse(House h)
-        {
-            return h.Rooms.Count();
-        }
-
-
         // GET: api/Houses/5
         [ResponseType(typeof(House))]
         public IHttpActionResult GetHouse(int id)
@@ -41,71 +34,71 @@ namespace CenitoIoT.Models
             return Ok(house);
         }
 
-        // PUT: api/Houses/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutHouse(int id, House house)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Houses/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutHouse(int id, House house)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != house.HouseId)
-            {
-                return BadRequest();
-            }
+        //    if (id != house.HouseId)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(house).State = EntityState.Modified;
+        //    db.Entry(house).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HouseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!HouseExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Houses
-        [ResponseType(typeof(House))]
-        public IHttpActionResult PostHouse(House house)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/Houses
+        //[ResponseType(typeof(House))]
+        //public IHttpActionResult PostHouse(House house)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Houses.Add(house);
-            db.SaveChanges();
+        //    db.Houses.Add(house);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = house.HouseId }, house);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = house.HouseId }, house);
+        //}
 
-        // DELETE: api/Houses/5
-        [ResponseType(typeof(House))]
-        public IHttpActionResult DeleteHouse(int id)
-        {
-            House house = db.Houses.Find(id);
-            if (house == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Houses/5
+        //[ResponseType(typeof(House))]
+        //public IHttpActionResult DeleteHouse(int id)
+        //{
+        //    House house = db.Houses.Find(id);
+        //    if (house == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Houses.Remove(house);
-            db.SaveChanges();
+        //    db.Houses.Remove(house);
+        //    db.SaveChanges();
 
-            return Ok(house);
-        }
+        //    return Ok(house);
+        //}
 
         protected override void Dispose(bool disposing)
         {

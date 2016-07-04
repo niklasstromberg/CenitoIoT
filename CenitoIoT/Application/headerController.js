@@ -1,15 +1,19 @@
-﻿app.controller("headerController", ["$scope", "$location", "Login", "$modal", "Houses", function ($scope, $location, Login, $modal, Houses) {
-    console.log("jag är här");
-    $scope.isCollapsed = true;
+﻿app.controller("headerController", ["$scope", "$location", "Houses", function ($scope, $location, Houses) {
+    console.log("headerController.");
 
-    $scope.loginStatus = function (status) {
-        Login.loginStatus(status);
-        $scope.navCollapse();
-    };
+    $scope.$on("gotHouses", function (event, data) {
+        $scope.output = JSON.stringify(data, null, '/t');
+        $scope.houses = data;
+    });
+    Houses.get(1);
+    console.log(Houses);
+    $scope.isCollapsed = true;
 
     $scope.navCollapse = function () {
         $scope.isCollapsed = !$scope.isCollapsed;
     }
+
+
 
     $scope.GoTo = function (url) {
         $location.url(url);

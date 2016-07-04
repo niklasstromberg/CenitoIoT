@@ -1,37 +1,24 @@
 ﻿<nav class="navbar navbar-default navbar-fixed-top header">
-    <div class="container-fluid ">
-        <!-- Startsida och toggle-knapp -->
+	<div class="container-fluid ">
+		<!-- Startsida och toggle-knapp -->
 
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-click="navCollapse()">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" ng-click="GoTo('index.html')">Startsida</a> 
-        </div>
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-click="navCollapse()">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" ng-click="GoTo('Index.html')">Startsida</a>
+		</div>
 
-        <!-- Innehåll som blir togglat på små skärmar -->
-        <div class="navbar-collapse" ng-class="{true: 'collapse', false: ''}[isCollapsed]">
-            <ul class="nav navbar-nav cursor">
-                <li class="bajs"><a ng-click="GoTo('index.html')">Startsida</a></li>
-                <li><a ng-click="GoTo('/authors')">Författare</a></li>
-                <li><a ng-click="GoTo('/books')">Böcker</a></li>
-                <li><a ng-click="GoTo('/genres')">Genre</a></li>
-
-                <!-- Dropdown för att ska olika objekt -->
-                <!--<li ng-if="loggedin == 1" dropdown on-toggle="toggled(open)">
-                    <a class="dropdown" dropdown-toggle>Skapa ny <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ng-click="createNewBook(4,4)" ng-click="isCollapsed = !isCollapsed">Bok</a></li>
-                        <li><a ng-click="createNewGenre(4,4)">Genre</a></li>
-                        <li><a ng-click="createNewAuthor(4,4)">Författare</a></li>
-                    </ul>
-                </li>-->
-
-  
-            </ul>
-        </div> /.navbar-collapse 
-    </div><!-- /.container-fluid -->
+		<!-- Innehåll som blir togglat på små skärmar -->
+		<div class="navbar-collapse" ng-class="{true: 'collapse', false: ''}[isCollapsed]">
+			<ul class="nav navbar-nav cursor">
+				<li class="bajs"><a ng-click="GoTo('Index.html')">Startsida</a></li>
+				<li ng-repeat="House in Houses"><a ng-click="GoTo('/house' + {{House.HouseId}})"> {{House.HouseName}} </a></li>
+				<li><a ng-click="GoTo('/house')">Hus</a></li>
+			</ul>
+		</div>
+	</div><!-- /.container-fluid -->
 </nav>

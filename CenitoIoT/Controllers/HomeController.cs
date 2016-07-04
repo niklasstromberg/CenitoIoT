@@ -33,7 +33,7 @@ namespace CenitoIoT.Controllers
         }
 
 
-        //// GET: api/Houses/5
+        //GET: api/Houses/5
         //[ResponseType(typeof(House))]
         //public IHttpActionResult GetHouse(int id)
         //{

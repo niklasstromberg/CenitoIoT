@@ -6,10 +6,10 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
             templateurl: "Partials/home2.html",
             controller: "homeController"
         })
-    .when("/house", {
-        templateurl: "Partials/house.html",
-        controller: "houseController"
-    })
+        .when("/house", {
+            templateurl: "Partials/house.html",
+            controller: "houseController"
+        })
         .when("/room", {
             templateurl: "Partials/room.html",
             controller: "roomController"
