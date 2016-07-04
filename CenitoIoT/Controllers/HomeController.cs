@@ -11,41 +11,11 @@ namespace CenitoIoT.Controllers
 {
     public class HomeController : Controller 
     {
-
-        private CenitoIoTContext db = new CenitoIoTContext();
-
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "CenitoIoT";
 
             return View();
         }
-
-        public IQueryable<House> GetHouses()
-        {
-            return db.Houses;
-        }
-
-        // returns the number of rooms in a house
-        public int GetRoomsPerHouse(House h)
-        {
-            return h.Rooms.Count();
-        }
-
-
-        //GET: api/Houses/5
-        //[ResponseType(typeof(House))]
-        //public IHttpActionResult GetHouse(int id)
-        //{
-        //    House house = db.Houses.Find(id);
-        //    if (house == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(house);
-        //}
-
-
     }
 }

@@ -3,19 +3,19 @@
 app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
     $routeProvider
         .when("/", {
-            templateurl: "Partials/home2.html",
+            templateUrl: "partials/home.html",
             controller: "homeController"
         })
         .when("/house", {
-            templateurl: "Partials/house.html",
+            templateUrl: "partials/house.html",
             controller: "houseController"
         })
         .when("/room", {
-            templateurl: "Partials/room.html",
+            templateUrl: "partials/room.html",
             controller: "roomController"
         })
         .when("/header", {
-            templateurl: "Partials/header.html",
+            templateUrl: "partials/header.html",
             controller: "headerController"
         })
     .otherwise({

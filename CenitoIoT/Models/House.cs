@@ -14,5 +14,35 @@ namespace CenitoIoT.Models
         public string HouseName { get; set; }
 
         public virtual List<Room> Rooms { get; set; }
+
+
+        public void SetRecords(House house)
+        {
+            foreach (Room r in house.Rooms)
+            {
+                r.ChangeValues();
+
+                if (r.RoomHumidity > r.RoomHumidityHigh || r.RoomHumidityHigh == null)
+                {
+                    r.RoomHumidityHigh = r.RoomHumidity;
+                    r.RHHTimestamp = DateTime.Now;
+                }
+                if (r.RoomHumidity < r.RoomHumidityLow || r.RoomHumidityLow == null)
+                {
+                    r.RoomHumidityLow = r.RoomHumidity;
+                    r.RHLTimestamp = DateTime.Now;
+                }
+                if (r.RoomTemperature > r.RoomTemperatureHigh || r.RoomTemperatureHigh == null)
+                {
+                    r.RoomTemperatureHigh = r.RoomTemperature;
+                    r.RTHTimestamp = DateTime.Now;
+                }
+                if (r.RoomTemperature < r.RoomTemperatureLow || r.RoomTemperatureLow == null)
+                {
+                    r.RoomTemperatureLow = r.RoomTemperature;
+                    r.RTLTimestamp = DateTime.Now;
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,10 @@ namespace CenitoIoT.Models
         // GET: api/Houses
         public IQueryable<House> GetHouses()
         {
+            foreach(House house in db.Houses)
+            {
+                house.SetRecords(house);
+            }
             return db.Houses;
         }
 
@@ -30,9 +34,11 @@ namespace CenitoIoT.Models
             {
                 return NotFound();
             }
-
+            house.SetRecords(house);
             return Ok(house);
         }
+
+        
 
         //// PUT: api/Houses/5
         //[ResponseType(typeof(void))]

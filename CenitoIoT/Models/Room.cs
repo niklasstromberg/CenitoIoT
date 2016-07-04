@@ -32,5 +32,23 @@ namespace CenitoIoT.Models
         public float? RoomTemperatureLow { get; set; }
         public DateTime? RTLTimestamp { get; set; }
 
+
+        public void ChangeValues()
+        {
+            Random rand = new Random();
+            int i = rand.Next(0, 1);
+            if (i == 1)
+            {
+                RoomHumidity += 1;
+                RoomTemperature += 1;
+            }
+            else
+            {
+                RoomHumidity -= 1;
+                RoomTemperature -= 1;
+            }
+        }
+
+
     }
 }

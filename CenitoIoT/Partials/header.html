@@ -1,7 +1,5 @@
 ﻿<nav class="navbar navbar-default navbar-fixed-top header">
-	<div class="container-fluid ">
-		<!-- Startsida och toggle-knapp -->
-
+	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" ng-click="navCollapse()">
 				<span class="sr-only">Toggle navigation</span>
@@ -9,16 +7,14 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" ng-click="GoTo('Index.html')">Startsida</a>
+			<a class="navbar-brand" ng-click="GoTo('Index.cshtml')">CenitoIoT</a>
 		</div>
 
-		<!-- Innehåll som blir togglat på små skärmar -->
 		<div class="navbar-collapse" ng-class="{true: 'collapse', false: ''}[isCollapsed]">
 			<ul class="nav navbar-nav cursor">
 				<li class="bajs"><a ng-click="GoTo('Index.html')">Startsida</a></li>
-				<li ng-repeat="House in Houses"><a ng-click="GoTo('/house' + {{House.HouseId}})"> {{House.HouseName}} </a></li>
-				<li><a ng-click="GoTo('/house')">Hus</a></li>
+				<!--<li><a ng-click="GoTo('Home.html')">Anslutna Hus</a></li>-->
 			</ul>
 		</div>
-	</div><!-- /.container-fluid -->
+	</div>
 </nav>
