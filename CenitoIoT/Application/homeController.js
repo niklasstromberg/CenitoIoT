@@ -15,7 +15,7 @@
 
     $scope.open = function (house, size) {
         if (house) {
-            var modalInstance = $uibModal.open({
+            var uibModalInstance = $uibModal.open({
                 templateUrl: 'partials/house.html',
                 controller: 'houseController',
                 size: size,
@@ -28,7 +28,7 @@
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
+            uibModalInstance.result.then(function (selectedItem) {
                 $route.reload();
                 $scope.selected = selectedItem;
             }, function () {
