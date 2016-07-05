@@ -19,8 +19,16 @@ namespace CenitoIoT.Models
         {
         }
 
-        public System.Data.Entity.DbSet<CenitoIoT.Models.Room> Rooms { get; set; }
+
 
         public System.Data.Entity.DbSet<CenitoIoT.Models.House> Houses { get; set; }
+
+        public System.Data.Entity.DbSet<CenitoIoT.Models.Room> Rooms { get; set; }
+
+        protected override void OnModelCreating (DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<House>()
+                .HasMany(e => e.Rooms);
+        }
     }
 }

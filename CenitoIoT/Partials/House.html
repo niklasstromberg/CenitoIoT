@@ -1,10 +1,47 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-	<p>Funkar detta?</p>
-</body>
-</html>
+﻿<div class="container-fluid ">
+	<div class="panel panel-primary" ng-if="house">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<p>
+				<h2>
+					{{house.HouseName}}
+				</h2>
+			</p>
+		</div>
+
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Rum</th>
+						<th>Temperatur</th>
+						<th>Luftfuktighet</th>
+						<th>Högsta temperatur</th>
+						<th>När?</th>
+						<th>Lägsta temperatur</th>
+						<th>När?</th>
+						<th>Högsta luftfuktighet</th>
+						<th>När?</th>
+						<th>Lägsta luftfuktighet</th>
+						<th>När?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="listFocus cursor" ng-repeat="room in house.Rooms">
+						<td>{{room.RoomName}}</td>
+						<td>{{room.RoomTemperature}}</td>
+						<td>{{room.RoomHumidity}}</td>
+						<td>{{room.RoomTemperatureHigh}}</td>
+						<td>{{room.RTHTimestamp}}</td>
+						<td>{{room.RoomTemperatureLow}}</td>
+						<td>{{room.RTLTimestamp}}</td>
+						<td>{{room.RoomHumidityHigh}}</td>
+						<td>{{room.RHHTimestamp}}</td>
+						<td>{{room.RoomHumidityLow}}</td>
+						<td>{{room.RHLTimestamp}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -17,12 +17,14 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th ng-click="sortByName()">Hus</th>
+						<th>Hus</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="listFocus cursor" ng-repeat="house in houses">
-						<td ng-click="GoTo('house.html')">{{house.HouseName}}</td>
+					<tr class="listFocus cursor" ng-repeat="house in houses | unique: 'HouseId'">
+						<td ng-click="open(house, 'lg')">
+							{{house.HouseName}}
+						</td>
 					</tr>
 				</tbody>
 			</table>

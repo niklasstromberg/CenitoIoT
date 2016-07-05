@@ -1,41 +1,28 @@
 ﻿app.controller("houseController", ["$scope", "Houses", "Rooms", "$modal", "$log", "$route", function ($scope, Houses, Rooms, $modal, $log, $route) {
     console.log("houseController.");
 
+    $scope.house = {};
+
+    $scope.$on("gotHouse", function (event, data) {
+        $scope.house = data;
+    });
+    Houses.get();
     $scope.$on("reloadHouse", function () {
         $route.reload();
         $scope.selected = selectedItem;
     })
 
-
-    //$scope.open = function (view, room, action, size) {
-    //    if (house) {
-    //        var modalInstance = $modal.open({
-    //            templateUrl: 'partials/room.html',
-    //            controller: 'roomController',
-    //            size: size,
-    //            resolve: {
-    //                param: function () {
-    //                    params = {
-    //                        id: house.HouseId,
-    //                        view: view,
-    //                        action: action
-    //                    }
-    //                    return params;
-    //                }
-    //            }
-    //        });
-    //        modalInstance.result.then(function (selectedItem) {
-    //            $route.reload();
-    //            $scope.selected = selectedItem;
-    //        }, function () {
-
-    //        });
-    //    }
-    //}
+    Houses.get()
 
     $scope.reload = function () {
         $rootScope.$broadcast("reloadHouse");
     }
     window.setInterval(reload, 30000);
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('Close');
+    };
+
+
 
 }]);
