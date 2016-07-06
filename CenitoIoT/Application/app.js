@@ -1,4 +1,4 @@
-﻿var app = angular.module("CenitoIoT", ["ngRoute", "ui.bootstrap", "angularSpinner", "angular.filter", "ui.grid"]);
+﻿var app = angular.module("CenitoIoT", ["ngRoute", "ui.bootstrap", "ui.bootstrap.modal", "angularSpinner", "angular.filter", "ui.grid"]);
 
 app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
     $routeProvider

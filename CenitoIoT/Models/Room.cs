@@ -36,8 +36,8 @@ namespace CenitoIoT.Models
         public void ChangeValues()
         {
             Random rand = new Random();
-            int i = rand.Next(0, 1);
-            if (i == 1)
+            int i = rand.Next(2);
+            if (i >= 1)
             {
                 RoomHumidity += 1;
                 RoomTemperature += 1;

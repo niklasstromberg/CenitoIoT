@@ -22,7 +22,7 @@
 				</thead>
 				<tbody>
 					<tr class="listFocus cursor" ng-repeat="house in houses | unique: 'HouseId'">
-						<td ng-click="open(house, 'lg')">
+						<td ng-click="open(house)">
 							{{house.HouseName}}
 						</td>
 					</tr>

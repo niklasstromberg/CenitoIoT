@@ -1,23 +1,24 @@
-﻿app.controller("houseController", ["$scope", "Houses", "Rooms", "$modal", "$log", "$route", function ($scope, Houses, Rooms, $modal, $log, $route) {
+﻿app.controller("houseController", ["$scope", "Houses", "Rooms", "$uibModal", "$log", "$route", "param", function ($scope, Houses, Rooms, $uibModal, $log, $route, param) {
     console.log("houseController.");
 
+    var id = param.id;
     $scope.house = {};
 
     $scope.$on("gotHouse", function (event, data) {
         $scope.house = data;
     });
-    Houses.get();
-    $scope.$on("reloadHouse", function () {
-        $route.reload();
-        $scope.selected = selectedItem;
-    })
+    Houses.get(id);
+    //$scope.$on("reloadHouse", function () {
+    //    $route.reload();
+    //    $scope.selected = selectedItem;
+    //})
 
-    Houses.get()
+
 
     $scope.reload = function () {
-        $rootScope.$broadcast("reloadHouse");
+        Houses.get(id);
     }
-    window.setInterval(reload, 30000);
+    window.setInterval($scope.reload, 3000);
 
     $scope.cancel = function () {
         $modalInstance.dismiss('Close');

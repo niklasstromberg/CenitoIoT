@@ -1,4 +1,4 @@
-﻿<div class="container-fluid ">
+﻿<div class="container-fluid">
 	<div class="panel panel-primary" ng-if="house">
 		<!-- Default panel contents -->
 		<div class="panel-heading">
@@ -9,38 +9,52 @@
 			</p>
 		</div>
 
-		<div class="panel-body grid" ui-grid="{ data: house.Rooms }">
+		<div class="panel-body grid">
 			<table class="table">
-				<thead>
-					<tr>
-						<th>Rum</th>
-						<th>Temperatur</th>
-						<th>Luftfuktighet</th>
-						<th>Högsta temperatur</th>
-						<th>När?</th>
-						<th>Lägsta temperatur</th>
-						<th>När?</th>
-						<th>Högsta luftfuktighet</th>
-						<th>När?</th>
-						<th>Lägsta luftfuktighet</th>
-						<th>När?</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="listFocus cursor" ng-repeat="room in house.Rooms">
-						<td>{{room.RoomName}}</td>
-						<td>{{room.RoomTemperature}}</td>
-						<td>{{room.RoomHumidity}}</td>
-						<td>{{room.RoomTemperatureHigh}}</td>
-						<td>{{room.RTHTimestamp}}</td>
-						<td>{{room.RoomTemperatureLow}}</td>
-						<td>{{room.RTLTimestamp}}</td>
-						<td>{{room.RoomHumidityHigh}}</td>
-						<td>{{room.RHHTimestamp}}</td>
-						<td>{{room.RoomHumidityLow}}</td>
-						<td>{{room.RHLTimestamp}}</td>
-					</tr>
-				</tbody>
+				<tr>
+					<th>Värde</th>
+					<th ng-repeat="room in house.Rooms">{{room.RoomName}}</th>
+				</tr>
+				<tr>
+					<td>Temperatur</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomTemperature}}</td>
+				</tr>
+				<tr>
+					<td>Luftfuktighet</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomHumidity}}</td>
+				</tr>
+				<tr>
+					<td>Högsta Temperatur</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomTemperatureHigh}}</td>
+				</tr>
+				<tr>
+					<td>Vid</td>
+					<td ng-repeat="room in house.Rooms">{{room.RTHTimestamp}}</td>
+				</tr>
+				<tr>
+					<td>Lägsta Temperatur</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomTemperatureLow}}</td>
+				</tr>
+				<tr>
+					<td>Vid</td>
+					<td ng-repeat="room in house.Rooms">{{room.RTLTimestamp}}</td>
+				</tr>
+				<tr>
+					<td>Högsta Luftfuktighet</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomHumidityHigh}}</td>
+				</tr>
+				<tr>
+					<td>Vid</td>
+					<td ng-repeat="room in house.Rooms">{{room.RHHTimestamp}}</td>
+				</tr>
+				<tr>
+					<td>Lägsta Luftfuktighet</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomHumidityLow}}</td>
+				</tr>
+				<tr>
+					<td>Vid</td>
+					<td ng-repeat="room in house.Rooms">{{room.RHLTimestamp}}</td>
+				</tr>
 			</table>
 		</div>
 	</div>

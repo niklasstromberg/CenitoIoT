@@ -16,7 +16,7 @@
                 $rootScope.thrownError = "";
                 $rootScope.msg = "";
                 broadcastName = broadcastName ? broadcastName : "success";
-                $rootScope.$broadcast(broadcastName, data);
+                $rootScope.$broadcast(broadcastName, data.data);
             }), function errorCallback(data, thrownError) {
                 console.log(data, thrownError);
                 $location.url('/error');
@@ -33,7 +33,7 @@
 app.service("Houses", ["restService", function (restService) {
     var houseServant = {
         get: function (Id) {
-            var broadcast = Id ? "gotHouse" + Id : "gotHouses";
+            var broadcast = Id ? "gotHouse" : "gotHouses";
             var restUrl = Id ? "houses/" + Id : "houses/";
             restService.Call(restUrl, "GET", {}, broadcast);
         }

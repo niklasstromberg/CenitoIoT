@@ -1,4 +1,4 @@
-﻿app.controller("homeController", ["$rootScope", "$scope", "Houses", "$log", "$route", "$location", function ($rootScope, $scope, Houses, $log, $route, $location, $uibModal) {
+﻿app.controller("homeController", ["$rootScope", "$scope", "Houses", "$log", "$route", "$location", "$uibModal", function ($rootScope, $scope, Houses, $log, $route, $location, $uibModal) {
     console.log("homeController");
 
     $scope.$on("gotHouses", function (event, data) {
@@ -13,12 +13,12 @@
         console.log(url);
     }
 
-    $scope.open = function (house, size) {
+    $scope.open = function (house) {
         if (house) {
             var uibModalInstance = $uibModal.open({
                 templateUrl: 'partials/house.html',
                 controller: 'houseController',
-                size: size,
+                //size: size,
                 resolve: {
                     param: function () {
                         params = {
