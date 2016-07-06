@@ -1,6 +1,6 @@
-﻿<div class="container-fluid">
+﻿<div class="container-fluid" style="width:initial">
 	<div class="panel panel-primary" ng-if="house">
-		<!-- Default panel contents -->
+
 		<div class="panel-heading">
 			<p>
 				<h2>
@@ -8,8 +8,8 @@
 				</h2>
 			</p>
 		</div>
-
-		<div class="panel-body grid">
+		<!-- The table of data in the modal -->
+		<div class="panel-body grid" style="overflow-y: scroll; height:100%; width:inherit">
 			<table class="table">
 				<tr>
 					<th>Värde</th>
@@ -21,7 +21,7 @@
 				</tr>
 				<tr>
 					<td>Luftfuktighet</td>
-					<td ng-repeat="room in house.Rooms">{{room.RoomHumidity}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomHumidity | number:2}}</td>
 				</tr>
 				<tr>
 					<td>Högsta Temperatur</td>
@@ -29,7 +29,7 @@
 				</tr>
 				<tr>
 					<td>Vid</td>
-					<td ng-repeat="room in house.Rooms">{{room.RTHTimestamp}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RTHTimestamp | date: 'yyyy-M-d, H:mm' }}</td>
 				</tr>
 				<tr>
 					<td>Lägsta Temperatur</td>
@@ -37,23 +37,23 @@
 				</tr>
 				<tr>
 					<td>Vid</td>
-					<td ng-repeat="room in house.Rooms">{{room.RTLTimestamp}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RTLTimestamp | date: 'yyyy-M-d, H:mm' }}</td>
 				</tr>
 				<tr>
 					<td>Högsta Luftfuktighet</td>
-					<td ng-repeat="room in house.Rooms">{{room.RoomHumidityHigh}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomHumidityHigh | number:2}}</td>
 				</tr>
 				<tr>
 					<td>Vid</td>
-					<td ng-repeat="room in house.Rooms">{{room.RHHTimestamp}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RHHTimestamp | date: 'yyyy-M-d, H:mm' }}</td>
 				</tr>
 				<tr>
 					<td>Lägsta Luftfuktighet</td>
-					<td ng-repeat="room in house.Rooms">{{room.RoomHumidityLow}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RoomHumidityLow | number:2}}</td>
 				</tr>
 				<tr>
 					<td>Vid</td>
-					<td ng-repeat="room in house.Rooms">{{room.RHLTimestamp}}</td>
+					<td ng-repeat="room in house.Rooms">{{room.RHLTimestamp | date: 'yyyy-M-d, H:mm' }}</td>
 				</tr>
 			</table>
 		</div>

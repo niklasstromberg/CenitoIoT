@@ -42,6 +42,11 @@ namespace CenitoIoT.Models
                     r.RoomTemperatureLow = r.RoomTemperature;
                     r.RTLTimestamp = DateTime.Now;
                 }
+                using (var db = new CenitoIoTContext())
+                {
+                    db.Entry(r).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
         }
     }

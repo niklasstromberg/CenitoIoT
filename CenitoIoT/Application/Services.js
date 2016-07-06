@@ -1,5 +1,6 @@
 ﻿app.service("restService", ["$http", "$rootScope", "$location", function ($http, $rootScope, $location) {
 
+    // function making calls to backend, and broadcasts result
     var restServant = {
         Call: function (url, method, data, broadcastName) {
 
@@ -41,6 +42,7 @@ app.service("Houses", ["restService", function (restService) {
     return houseServant;
 }]);
 
+// currently unused function to get data by room
 app.service("Rooms", ["restService", function (restService) {
     var roomServant = {
         get: function (Id) {

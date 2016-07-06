@@ -39,13 +39,13 @@ namespace CenitoIoT.Models
             int i = rand.Next(2);
             if (i >= 1)
             {
-                RoomHumidity += 1;
-                RoomTemperature += 1;
+                RoomHumidity = RoomHumidity + (float)0.1;
+                RoomTemperature = RoomTemperature + 1;
             }
             else
             {
-                RoomHumidity -= 1;
-                RoomTemperature -= 1;
+                RoomHumidity = RoomHumidity - (float)0.1;
+                RoomTemperature = RoomTemperature -1;
             }
         }
 

@@ -1,18 +1,13 @@
 ﻿app.controller("homeController", ["$rootScope", "$scope", "Houses", "$log", "$route", "$location", "$uibModal", function ($rootScope, $scope, Houses, $log, $route, $location, $uibModal) {
-    console.log("homeController");
-
+    
+    // gets data from service, listening to the broadcast
     $scope.$on("gotHouses", function (event, data) {
         $scope.output = JSON.stringify(data, null, '/t');
         $scope.houses = data;
-        console.log(data);
     });
     Houses.get();
 
-    $scope.GoTo = function (url) {
-        $location.url(url);
-        console.log(url);
-    }
-
+    // opens the modal, passes the id of the house
     $scope.open = function (house) {
         if (house) {
             var uibModalInstance = $uibModal.open({

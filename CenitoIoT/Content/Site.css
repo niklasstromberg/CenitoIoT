@@ -88,15 +88,6 @@ header .nav .caret {
 }
 /*-----Header slut    -------*/
 
-/*Main*/
-@media (min-width:1000px) {
-	body {
-		background-image: url("/Content/Image/bakgrund.jpeg");
-		background-size: 400px;
-	}
-}
-/*------------*/
-
 /*Footer*/
 footer {
 	position: absolute;
